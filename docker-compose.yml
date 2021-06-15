@@ -8,8 +8,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: wael
       MYSQL_DATABASE: articles
-    ports:
-      - 3307:3306
+      ports:
+        - 3306:3306
     volumes:
       - db-config:/etc/mysql
       - db-data:/var/lib/mysql
