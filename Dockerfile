@@ -16,4 +16,4 @@ RUN npm run prebuild
 
 RUN npm run build
 
-CMD [ "npm", "run", "start:prod" ]
+CMD [ "pm2", "start", "pm2.json" ]
