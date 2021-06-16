@@ -12,8 +12,10 @@ COPY . .
 
 EXPOSE 3000
 
+RUN npm i -g pm2;
+
 RUN npm run prebuild
 
 RUN npm run build
 
-CMD [ "pm2", "start", "pm2.json" ]
+CMD [ "pm2-runtime", "pm2.json" ]
