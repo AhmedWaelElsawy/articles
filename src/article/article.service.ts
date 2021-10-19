@@ -68,6 +68,17 @@ export class ArticleService {
         });
     }
 
+    async incrementLikes(article: Article): Promise<Article> {
+        const result = await this.articleRepo.createQueryBuilder().update().set({likesCount: () => 'likesCount + 1'}).whereEntity(article).execute();
+        return result.raw
+    }
+
+    async decrementLikes(article: Article): Promise<Article> {
+        const result = await this.articleRepo.createQueryBuilder().update().set({likesCount: () => 'likesCount - 1'}).whereEntity(article).execute();
+        return result.raw
+    }
+
+
     async updateArticle(article: UpdateArticleDto): Promise<Article> {
         await this.getOneById(article.id)
         return this.articleRepo.save(article)

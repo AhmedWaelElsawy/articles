@@ -21,8 +21,7 @@ export class LikeService {
         const article = await this.articleService.getOneById(like.article as number);
         const newLike = this.likeRepo.create(like);
         await this.likeRepo.save(newLike);
-        article.likesCount++;
-        return this.articleService.updateArticle(article);
+        return this.articleService.incrementLikes(article);
     }
 
     async unlikeArticle(like: CreateOrDeleteLikeDto): Promise<Article> {
@@ -31,8 +30,7 @@ export class LikeService {
             throw new ConflictException(`can't delete this like`)
         }
         const article = await this.articleService.getOneById(like.article as number);
-        article.likesCount--;
-        return this.articleService.updateArticle(article);
+        return this.articleService.decrementLikes(article);
     }
 
 }
