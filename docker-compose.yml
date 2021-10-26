@@ -1,19 +1,19 @@
 version: "3.8"
 
 services:
-  mysqldb:
-    image: mysql
-    restart: always
-    env_file: ./.env
-    environment:
-      MYSQL_ROOT_PASSWORD: wael
-      MYSQL_DATABASE: articles
-      ports:
-        - 3306:3306
-    volumes:
-      - db-config:/etc/mysql
-      - db-data:/var/lib/mysql
-      - ./db/backup/files/:/data_backup/data
+  # mysqldb:
+  #   image: mysql
+  #   restart: always
+  #   env_file: ./.env
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: wael
+  #     MYSQL_DATABASE: articles
+  #     ports:
+  #       - 3306:3306
+  #   volumes:
+  #     - db-config:/etc/mysql
+  #     - db-data:/var/lib/mysql
+  #     - ./db/backup/files/:/data_backup/data
   app:
     build:
       context: .

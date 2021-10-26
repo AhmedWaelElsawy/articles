@@ -22,9 +22,20 @@ export class AuthorService {
         }
     }
 
-    createAuthor(author: CreateAuthorDto): Promise<Author> {
+    async getOneByUsername(username: string): Promise<Author> {
+        try {
+            const author = await this.authorRepo.findOneOrFail({username});
+            return author;
+        } catch (error) {
+            throw new NotFoundException('Author not found')
+        }
+    }
+
+    async createAuthor(author: CreateAuthorDto): Promise<Author> {
         const newAuthor = this.authorRepo.create(author);
-        return this.authorRepo.save(newAuthor);
+        let savedAuthor = await this.authorRepo.save(newAuthor);
+        // delete savedAuthor.password;
+        return savedAuthor;
     }
 
 }

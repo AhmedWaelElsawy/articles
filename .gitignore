@@ -34,6 +34,8 @@ lerna-debug.log*
 !.vscode/extensions.json
 
 # database
-
 /db
 /DB
+
+#package-lock.json
+package-lock.json

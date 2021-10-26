@@ -7,16 +7,20 @@ import { ArticleModule } from './article/article.module';
 import { LikeModule } from './like/like.module';
 import { CommentModule } from './comment/comment.module';
 import { SharedModule } from './shared/shared.module';
-import config from '../ormconfig'
+import { AuthModule } from './auth/auth.module';
+import { DatabaseModule } from '../ormconfig'
+import { AppConfigModule } from '../modules/config.module';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot(config),
+    AppConfigModule,
+    DatabaseModule,
     AuthorModule,
     ArticleModule,
     LikeModule,
     CommentModule,
-    SharedModule
+    SharedModule,
+    AuthModule
   ],
   controllers: [AppController],
   providers: [AppService],

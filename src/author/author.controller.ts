@@ -1,18 +1,22 @@
+import { HashingService } from './../shared/hashing/hashing.service';
 import { Author } from '../author/author.entity';
 import { CreateAuthorDto } from './dto/create-author.dto';
 import { AuthorService } from './author.service';
-import { Body, Controller, Get, NotFoundException, Param, Post } from '@nestjs/common';
+import { Body, ClassSerializerInterceptor, Controller, Get, NotFoundException, Param, Post, UseInterceptors } from '@nestjs/common';
 import { ValidIdDto } from '../dto/is-valid-id.dto';
 
+@UseInterceptors(ClassSerializerInterceptor)
 @Controller('author')
 export class AuthorController {
-    constructor(private readonly authorService: AuthorService) { }
+    constructor(private readonly authorService: AuthorService, private hashingService: HashingService) { }
+
 
     @Post()
-    create(
+    async create(
         @Body()
         newAuthor: CreateAuthorDto
     ): Promise<Author> {
+        newAuthor.password = await this.hashingService.hash(newAuthor.password)
         return this.authorService.createAuthor(newAuthor);
     }
 
