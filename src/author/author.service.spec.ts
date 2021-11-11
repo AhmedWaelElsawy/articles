@@ -8,7 +8,9 @@ describe('AuthorService', () => {
 
   const authorToCreate = {
     name: 'author 1',
-    jobTitle: 'SE'
+    jobTitle: 'SE',
+    username: 'Mohamed',
+    password: 'Mohamed',
   };
   const authorsList = [
     {

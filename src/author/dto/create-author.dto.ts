@@ -3,8 +3,6 @@ import {
   IsString,
 } from "class-validator";
 
-import { } from "class-transformer"
-
 export class CreateAuthorDto {
   @IsNotEmpty()
   @IsString()

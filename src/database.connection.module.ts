@@ -1,10 +1,9 @@
-import { ConfigModule, ConfigService } from "@nestjs/config";
+import { ConfigService } from "@nestjs/config";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { PostgresConnectionOptions } from "typeorm/driver/postgres/PostgresConnectionOptions";
 
 
 export const DatabaseModule = TypeOrmModule.forRootAsync({
-    imports: [ConfigModule],
     useFactory: async (configService: ConfigService) => {
       const dbUri = `postgres://${configService.get('DATABASE_USER')}:${configService.get('DATABASE_PASS')}@surus.db.elephantsql.com/`;
   
