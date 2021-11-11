@@ -23,6 +23,9 @@ export class Author {
     @Column({ nullable: false })
     jobTitle: string;
 
+    @Column({nullable: true})
+    isAdmin: boolean
+
     @OneToMany(() => Article, article => article.author)
     articles: Article[];
 

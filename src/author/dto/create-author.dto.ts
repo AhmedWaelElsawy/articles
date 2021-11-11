@@ -1,5 +1,7 @@
 import {
+  IsBoolean,
   IsNotEmpty,
+  IsOptional,
   IsString,
 } from "class-validator";
 
@@ -16,4 +18,8 @@ export class CreateAuthorDto {
   @IsNotEmpty()
   @IsString()
   jobTitle: string;
+
+  @IsOptional()
+  @IsBoolean()
+  isAdmin?: boolean;
 }

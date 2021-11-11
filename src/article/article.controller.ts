@@ -5,6 +5,7 @@ import { ValidIdDto } from '../dto/is-valid-id.dto';
 import { Article } from './article.entity';
 import { ArticleService } from './article.service';
 import { CreateArticleDto } from './dto/create-article.dto';
+import { Public } from '../decorators/public-route.decorator';
 
 @Controller('article')
 export class ArticleController {
@@ -19,11 +20,13 @@ export class ArticleController {
         return this.articleService.createArticle(newArticle);
     }
 
+    @Public()
     @Get()
     getAll(@Query() query: ValidSorted): Promise<Article[]> {
         return this.articleService.getAll(query.sorted);
     }
-
+    
+    @Public()
     @Get('/search')
     search(@Query() query: ValidValue): Promise<Article[]> {
         return this.articleService.searchArticles(query.value);

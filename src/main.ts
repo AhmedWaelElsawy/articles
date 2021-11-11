@@ -9,6 +9,8 @@ async function bootstrap() {
   const config = new ConfigService();
   app.useGlobalPipes(new ValidationPipe({
     transform: true,
+    whitelist: true,
+    forbidNonWhitelisted: true
   }));
   useContainer(app.select(AppModule), { fallbackOnErrors: true });
   console.log(config.get('PORT'))

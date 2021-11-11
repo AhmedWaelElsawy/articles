@@ -10,6 +10,7 @@ import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
 import { DatabaseModule } from './database.connection.module'
 import { AppConfigModule } from './modules/config.module';
+import { CaslModule } from './casl/casl.module';
 
 @Module({
   imports: [
@@ -20,7 +21,8 @@ import { AppConfigModule } from './modules/config.module';
     LikeModule,
     CommentModule,
     SharedModule,
-    AuthModule
+    AuthModule,
+    CaslModule
   ],
   controllers: [AppController],
   providers: [AppService],

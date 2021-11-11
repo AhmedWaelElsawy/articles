@@ -8,6 +8,9 @@ import { PassportModule } from '@nestjs/passport';
 import { AuthController } from './auth.controller';
 import { JwtModule, JwtModuleOptions } from '@nestjs/jwt';
 import { JwtStrategy } from './jwt.strategy';
+import { APP_GUARD } from '@nestjs/core';
+import { JwtAuthGuard } from './jwt-auth.guard';
+import { CaslModule } from '../casl/casl.module';
 
 @Module({
   imports: [
@@ -24,8 +27,17 @@ import { JwtStrategy } from './jwt.strategy';
       },
       inject: [ConfigService]
     }),
+    CaslModule,
   ],
-  providers: [AuthService, LocalStrategy, JwtStrategy],
+  providers: [
+    AuthService,
+    LocalStrategy,
+    JwtStrategy,
+    {
+      provide: APP_GUARD,
+      useClass: JwtAuthGuard,
+    },
+  ],
   controllers: [AuthController]
 })
 export class AuthModule { }

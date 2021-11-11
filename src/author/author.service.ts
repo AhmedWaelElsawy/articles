@@ -3,6 +3,7 @@ import { Author } from './author.entity';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { UpdateAuthorDto } from './dto/update-author.dto';
 
 @Injectable()
 export class AuthorService {
@@ -36,6 +37,10 @@ export class AuthorService {
         let savedAuthor = await this.authorRepo.save(newAuthor);
         // delete savedAuthor.password;
         return savedAuthor;
+    }
+
+    async updateAuthor(author: UpdateAuthorDto): Promise<Author> {
+        return this.authorRepo.save(author)
     }
 
 }
